@@ -1,0 +1,26 @@
+{
+    "tasks": [{
+        "type": "shell",
+        "label": "C/C++: clang++ build active file",
+        "command": "/usr/bin/clang++",
+        "args": [
+            "-g",
+            "/Users/yons/workspace/CPPTest/CPPServer/main.cpp",
+            "/Users/yons/workspace/CPPTest/CPPServer/Net/KCP/ikcp.c",
+            "/Users/yons/workspace/CPPTest/CPPServer/Net/UdpSocket.cpp",
+            "-o",
+            "/Users/yons/workspace/CPPTest/CPPServer/CPPServer"
+        ],
+        "options": {
+            "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": [
+            "$gcc"
+        ],
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    }],
+    "version": "2.0.0"
+}
