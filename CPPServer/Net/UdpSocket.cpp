@@ -1,4 +1,5 @@
 #include "UdpSocket.h"
+using namespace CPPServer;
 using namespace CPPServer::Net;
 
 #define SOCKET_ERROR -1
@@ -6,6 +7,8 @@ using namespace CPPServer::Net;
 UDPSERVER UdpSocket::sock = socket(AF_INET, SOCK_DGRAM, 0);
 sockaddr UdpSocket::clientAddr = {};
 socklen_t UdpSocket::nAddrLen = sizeof(sockaddr);
+ikcpcb *UdpSocket::kcp;
+CPPServer::Net::Func::ReceiveProto *UdpSocket::proto = new CPPServer::Net::Func::ReceiveProto;
 
 void UdpSocket::connect()
 {
@@ -15,7 +18,7 @@ void UdpSocket::connect()
 #endif
     if (sock == SOCKET_ERROR)
     {
-        perror("socket error!");
+        perror("socket error!\n");
         return;
     }
     else
@@ -40,9 +43,9 @@ void UdpSocket::connect()
     sin.sin_family = AF_INET;
     sin.sin_port = htons(4567);
     sin.sin_addr.s_addr = INADDR_ANY;
-    if (bind(sock, (sockaddr *)&sin, sizeof(sin)) == SOCKET_ERROR)
+    if (::bind(sock, (sockaddr *)&sin, sizeof(sin)) == SOCKET_ERROR)
     {
-        perror("bind error!");
+        perror("bind error!\n");
         return;
     }
 
@@ -81,7 +84,7 @@ void UdpSocket::connect()
             printf("message = %s\n", receiveBuffer);
             //todo receive
 
-            send(receiveBuffer, receiveDataLength);
+            proto->Receive(receiveBuffer);
         }
     }
 
@@ -96,7 +99,7 @@ int UdpSocket::udp_output(const char *buf, int len, ikcpcb *kcp, void *user)
     return 0;
 }
 
-void UdpSocket::send(const char *buffer, int len)
+int UdpSocket::send(const char *buffer, int len)
 {
-    ikcp_send(kcp, buffer, len);
+    return ikcp_send(kcp, buffer, len);
 }

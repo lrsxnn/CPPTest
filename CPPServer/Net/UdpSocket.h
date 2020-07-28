@@ -23,6 +23,7 @@
 #include <netdb.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include "proto/func/ReceiveProto.h"
 
 #ifndef UDPSERVER
 #define UDPSERVER int
@@ -40,7 +41,8 @@ namespace CPPServer
         {
         private:
             static UDPSERVER sock;
-            ikcpcb *kcp;
+            static ikcpcb *kcp;
+            static CPPServer::Net::Func::ReceiveProto *proto;
 
             static sockaddr clientAddr;
             static socklen_t nAddrLen;
@@ -110,8 +112,8 @@ namespace CPPServer
             }
 
         public:
-            void connect();
-            void send(const char *buffer, int len);
+            static void connect();
+            static int send(const char *buffer, int len);
         };
     } // namespace Net
 } // namespace CPPServer

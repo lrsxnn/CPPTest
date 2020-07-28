@@ -9,6 +9,8 @@ using namespace CPPClient::Net;
 
 UDPCLIENT UdpSocket::sock = socket(AF_INET, SOCK_DGRAM, 0);
 sockaddr_in UdpSocket::sin;
+ikcpcb *UdpSocket::kcp;
+CPPClient::Net::Func::ReceiveProto *UdpSocket::proto = new CPPClient::Net::Func::ReceiveProto;
 
 void UdpSocket::connectByIP(const char *ip, int port)
 {
@@ -63,11 +65,11 @@ void UdpSocket::connect()
     ikcp_wndsize(kcp, 128, 128);
     ikcp_nodelay(kcp, 0, 10, 0, 0);
 
-    thread t(receive, kcp);
+    thread t(receive);
     t.detach();
 }
 
-void UdpSocket::receive(ikcpcb *kcp)
+void UdpSocket::receive()
 {
     char receiveBuffer[1024];
     int receiveBufferSize = sizeof(receiveBuffer);
@@ -106,6 +108,7 @@ void UdpSocket::receive(ikcpcb *kcp)
             }
             printf("message = %s\n", receiveBuffer);
             //todo receive
+            proto->Receive(receiveBuffer);
         }
     }
     printf("Thread over\n");
@@ -132,9 +135,9 @@ void UdpSocket::connectServer(const char *address, int port)
     }
 }
 
-void UdpSocket::send(const char *buffer, int len)
+int UdpSocket::send(const char *buffer, int len)
 {
-    ikcp_send(kcp, buffer, len);
+    return ikcp_send(kcp, buffer, len);
 }
 
 void UdpSocket::closeUdpSocket()

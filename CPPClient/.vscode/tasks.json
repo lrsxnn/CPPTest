@@ -6,9 +6,20 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
-                "${file}",
+                "-std=c++11",
+                "${workspaceFolder}/../main.cpp",
+                "${fileDirname}/../Net/KCP/ikcp.c",
+                "${fileDirname}/../Net/UdpSocket.cpp",
+                "${fileDirname}/../Net/proto/pb/cliReq.pb.cc",
+                "${fileDirname}/../Net/proto/pb/gameProto.pb.cc",
+                "${fileDirname}/../Net/proto/pb/lsEnum.pb.cc",
+                "${fileDirname}/../Net/proto/pb/srvRes.pb.cc",
+                "${fileDirname}/../Net/proto/cmd/SendProto.cpp",
+                "${fileDirname}/../Net/proto/cmd/ReceiveProto.cpp",
+                "${fileDirname}/../Net/proto/func/ReceiveProto.cpp",
+                "-lprotobuf",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/../CPPClient"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -28,11 +39,19 @@
             "args": [
                 "-g",
                 "-std=c++11",
-                "/Users/yons/workspace/CPPTest/CPPClient/main.cpp",
-                "/Users/yons/workspace/CPPTest/CPPClient/Net/KCP/ikcp.c",
-                "/Users/yons/workspace/CPPTest/CPPClient/Net/UdpSocket.cpp",
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/Net/KCP/ikcp.c",
+                "${workspaceFolder}/Net/UdpSocket.cpp",
+                "${workspaceFolder}/Net/proto/pb/cliReq.pb.cc",
+                "${workspaceFolder}/Net/proto/pb/gameProto.pb.cc",
+                "${workspaceFolder}/Net/proto/pb/lsEnum.pb.cc",
+                "${workspaceFolder}/Net/proto/pb/srvRes.pb.cc",
+                "${workspaceFolder}/Net/proto/cmd/SendProto.cpp",
+                "${workspaceFolder}/Net/proto/cmd/ReceiveProto.cpp",
+                "${workspaceFolder}/Net/proto/func/ReceiveProto.cpp",
+                "-lprotobuf",
                 "-o",
-                "/Users/yons/workspace/CPPTest/CPPClient/CPPClient"
+                "${workspaceFolder}/CPPClient"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -51,9 +70,20 @@
             "command": "/usr/bin/cpp",
             "args": [
                 "-g",
-                "${file}",
+                "-std=c++11",
+                "${fileDirname}/../main.cpp",
+                "${fileDirname}/../Net/KCP/ikcp.c",
+                "${fileDirname}/../Net/UdpSocket.cpp",
+                "${fileDirname}/../Net/proto/pb/cliReq.pb.cc",
+                "${fileDirname}/../Net/proto/pb/gameProto.pb.cc",
+                "${fileDirname}/../Net/proto/pb/lsEnum.pb.cc",
+                "${fileDirname}/../Net/proto/pb/srvRes.pb.cc",
+                "${fileDirname}/../Net/proto/cmd/SendProto.cpp",
+                "${fileDirname}/../Net/proto/cmd/ReceiveProto.cpp",
+                "${fileDirname}/../Net/proto/func/ReceiveProto.cpp",
+                "-lprotobuf",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/../CPPClient"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

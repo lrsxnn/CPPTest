@@ -4,7 +4,6 @@ using namespace CPPServer::Net;
 
 int main(int argc, const char *argv[])
 {
-    UdpSocket *socket = new UdpSocket;
-    socket->connect();
+    UdpSocket::connect();
     return 0;
 }

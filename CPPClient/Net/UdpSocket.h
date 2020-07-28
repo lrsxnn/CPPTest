@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <thread>
 #include <functional>
+#include "proto/func/ReceiveProto.h"
 
 #if defined(WIN32) || defined(_WIN32) || defined(WIN64) || defined(_WIN64)
 #include <winsock2.h>
@@ -39,18 +40,19 @@ namespace CPPClient
         private:
             static UDPCLIENT sock;
             static sockaddr_in sin;
-            ikcpcb *kcp;
+            static ikcpcb *kcp;
+            static CPPClient::Net::Func::ReceiveProto *proto;
 
-            void connectByIP(const char *ip, int port);
-            void connectByHost(const char *host, int port);
-            void connect();
-            static void receive(ikcpcb *kcp);
+            static void connectByIP(const char *ip, int port);
+            static void connectByHost(const char *host, int port);
+            static void connect();
+            static void receive();
             static int udp_output(const char *buf, int len, ikcpcb *kcp, void *user);
 
         public:
-            void connectServer(const char *address, int port);
-            void send(const char *buffer, int len);
-            void closeUdpSocket();
+            static void connectServer(const char *address, int port);
+            static int send(const char *buffer, int len);
+            static void closeUdpSocket();
         };
     } // namespace Net
 } // namespace CPPClient

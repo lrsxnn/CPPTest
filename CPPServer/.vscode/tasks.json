@@ -5,11 +5,20 @@
         "command": "/usr/bin/clang++",
         "args": [
             "-g",
-            "/Users/yons/workspace/CPPTest/CPPServer/main.cpp",
-            "/Users/yons/workspace/CPPTest/CPPServer/Net/KCP/ikcp.c",
-            "/Users/yons/workspace/CPPTest/CPPServer/Net/UdpSocket.cpp",
+            "-std=c++11",
+            "${workspaceFolder}/main.cpp",
+            "${workspaceFolder}/Net/KCP/ikcp.c",
+            "${workspaceFolder}/Net/UdpSocket.cpp",
+            "${workspaceFolder}/Net/proto/pb/cliReq.pb.cc",
+            "${workspaceFolder}/Net/proto/pb/gameProto.pb.cc",
+            "${workspaceFolder}/Net/proto/pb/lsEnum.pb.cc",
+            "${workspaceFolder}/Net/proto/pb/srvRes.pb.cc",
+            "${workspaceFolder}/Net/proto/cmd/SendProto.cpp",
+            "${workspaceFolder}/Net/proto/cmd/ReceiveProto.cpp",
+            "${workspaceFolder}/Net/proto/func/ReceiveProto.cpp",
+            "-lprotobuf",
             "-o",
-            "/Users/yons/workspace/CPPTest/CPPServer/CPPServer"
+            "${workspaceFolder}/CPPServer"
         ],
         "options": {
             "cwd": "${workspaceFolder}"

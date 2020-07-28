@@ -63,6 +63,9 @@
         "hash_map": "cpp",
         "cinttypes": "cpp",
         "hashtable": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "deque": "cpp",
+        "__memory": "cpp",
+        "*.inc": "cpp"
     }
 }
